@@ -6,7 +6,6 @@ rotator.forEach(element => {
 });
 
 
-
 function rotate() {
     if (index === rotator.length - 1) {
         rotator[index].classList.remove('rotator__case_active');
@@ -18,6 +17,5 @@ function rotate() {
         index++;
     }
 }
-
 
 let timerId = setInterval(rotate, 1000);
