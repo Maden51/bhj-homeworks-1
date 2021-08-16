@@ -1,5 +1,6 @@
 const rotator = Array.from(document.querySelectorAll('.rotator__case'));
 index = 0;
+let delay = 1000;
 
 rotator.forEach(element => {
     element.style.color = element.getAttribute('data-color'); 
@@ -18,4 +19,9 @@ function rotate() {
     }
 }
 
-let timerId = setInterval(rotate, 1000);
+let timerId = setTimeout(function rotateTimer(){
+    
+        
+    timerId = setTimeout(rotate, 1000);
+     
+}, 1000);
