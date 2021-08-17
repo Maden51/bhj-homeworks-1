@@ -20,8 +20,8 @@ function rotate() {
 }
 
 let timerId = setTimeout(function rotateTimer(){
-    
+    delay = rotator.forEach(element => {element.getAttribute('data-speed')});
         
-    timerId = setTimeout(rotate, 1000);
+    timerId = setTimeout(rotate, delay);
      
-}, 1000);
+}, delay);
