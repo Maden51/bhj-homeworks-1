@@ -1,6 +1,6 @@
 const rotator = Array.from(document.querySelectorAll('.rotator__case'));
 index = 0;
-let delay = 1000;
+
 
 rotator.forEach(element => {
     element.style.color = element.getAttribute('data-color'); 
@@ -16,12 +16,14 @@ function rotate() {
         rotator[index].classList.remove('rotator__case_active');
         rotator[index + 1].classList.add('rotator__case_active');
         index++;
+        let delay = rotator[index].getAttribute('data-speed');
     }
 }
+let timerId = setTimeout(rotate, delay);
 
-let timerId = setTimeout(function rotateTimer(){
-    delay = rotator.forEach(element => {element.getAttribute('data-speed')});
-        
-    timerId = setTimeout(rotate, delay);
-     
-}, delay);
+//let timerId = setTimeout(function rotateTimer(){
+//delay = rotator.forEach(element => {element.getAttribute('data-speed')});
+//     
+//timerId = setTimeout(rotate, delay);
+//   
+//}, delay);
