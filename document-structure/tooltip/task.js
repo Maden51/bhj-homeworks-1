@@ -1,6 +1,5 @@
 const elemsWithToolTip = document.querySelectorAll('.has-tooltip');
 const toolTip = document.createElement('div');
-const actToolTip = document.querySelector('.tooltip_active');
 toolTip.classList.add('tooltip');
 
 elemsWithToolTip.forEach((item) => {
@@ -12,7 +11,7 @@ elemsWithToolTip.forEach((item) => {
         let elemLeftCoords = e.target.getBoundingClientRect().left;
         let textToolTip = item.getAttribute('title');
 
-        toolTip.contains(actToolTip) && actToolTip.innerText == e.target.title ? 
+        toolTip.contains(document.querySelector('.tooltip_active')) && document.querySelector('.tooltip_active').innerText == e.target.title ? 
         toolTip.classList.remove('tooltip_active') : toolTip.classList.add('tooltip_active');
 
         toolTip.style.top = elemTopCoords + 20 + 'px';
