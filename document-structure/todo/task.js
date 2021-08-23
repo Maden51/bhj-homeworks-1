@@ -3,17 +3,15 @@ const taskInput = document.querySelector('.tasks');
 const taskMessages = document.querySelector('.tasks__list');
 
 const getTaskFromStorage = function() {
-            let keys = JSON.parse(localStorage.getItem('task'));
-            console.log(keys)
-            taskMessages.innerHTML +=`
-            <div class="task">
-            <div class="task__title">
-            ${key};
-            </div>
-            <a href="#" class="task__remove">&times;</a>
-            </div>`;
-       
-    
+    if (localStorage.taskSet) {
+        taskMessages.innerHTML +=
+        `<div class="task">
+        <div class="task__title">
+        ${JSON.parse(localStorage.taskSet)};
+        </div>
+        <a href="#" class="task__remove">&times;</a>
+        </div>`;
+    }
 };
 
 const setTaskToStorage = function() {
