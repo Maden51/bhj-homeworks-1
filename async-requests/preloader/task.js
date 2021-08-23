@@ -5,15 +5,15 @@ const getMoneyDate = function() {
     xhr.responseType = 'json';
     xhr.send();
 
-    xhr.addEventListener('readystatechange', function(e) {
+    xhr.addEventListener('load', function(e) {
     if(xhr.readyState === 4 && xhr.status === 200) {
         document.querySelector('.loader').classList.remove('loader_active');
-        const valute = xhr.response.response.Valute;
-        for (e in valute) {
+        const { Valute } = xhr.response.response;
+        for (e in Valute) {
             document.querySelector('#items').innerHTML += `
                 <div class ="item">
-                <div class="item__code" style = 'display:inline;'>${valute[e].CharCode}</div>
-                <div class="item__value" style = 'display:inline;'>${valute[e].Value}</div>
+                <div class="item__code" style = 'display:inline;'>${Valute[e].CharCode}</div>
+                <div class="item__value" style = 'display:inline;'>${Valute[e].Value}</div>
                 <div class="item__currency" style = 'display:inline;'>руб.</div>
                 </div>`
             }
