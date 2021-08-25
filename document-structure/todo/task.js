@@ -1,24 +1,29 @@
 const taskList = document.querySelector('.tasks__input');
 const taskInput = document.querySelector('.tasks');
 const taskMessages = document.querySelector('.tasks__list');
+const taskTitle = document.querySelector('.task__title');
 
 const getTaskFromStorage = function() {
-    if (localStorage.taskSet) {
+   let allTasks = JSON.parse(localStorage.getItem('taskList'));
+   console.log(allTasks);
+   for (i = 0; i < allTasks.length; i++) {
+        let taskName = allTasks[i];
         taskMessages.innerHTML +=
         `<div class="task">
         <div class="task__title">
-        ${JSON.parse(localStorage.taskSet)};
+        ${taskName}
         </div>
         <a href="#" class="task__remove">&times;</a>
         </div>`;
-    }
+   }
 };
 
 const setTaskToStorage = function() {
     let taskName = `${taskList.value}`;
-    let taskSet = [];
-    taskSet.push(taskName);
-    localStorage.taskSet += JSON.stringify({'task': taskName}); 
+    let allTasks = JSON.parse(localStorage.getItem('taskList'));
+    if(allTasks == null) allTasks = [];
+    allTasks.push(taskName);
+    localStorage.setItem('taskList', JSON.stringify(allTasks)); 
 };
 
 const addTask = function() {
@@ -30,8 +35,6 @@ const addTask = function() {
         </div>
         <a href="#" class="task__remove">&times;</a>
         </div>`; 
-
-        
         setTaskToStorage();
         taskList.value = null;
     }
@@ -46,13 +49,15 @@ taskInput.addEventListener('click', (e) => {
     } else if (e.target.id == 'tasks__add') {
         addTask();
     } else if (e.target.className == 'task__remove') {
-        e.target.parentElement.remove();
-        for (i = 0; i < localStorage.length; i++) {
-            let key = localStorage.key(i);
-            let value = localStorage.getItem(key);
-            if(value.includes(e.target.parentElement.textContent)){
-                localStorage.removeItem(key);
+        let allTasks = JSON.parse(localStorage.getItem('taskList'));
+        console.log(allTasks);
+        for (i = 0; i < allTasks.length; i++) {
+            if(allTasks[i] === (e.target.parentElement.textContent)){
+                allTasks.splice(i, 1);
+                console.log(allTasks);
             }
         }
+        e.target.parentElement.remove();
+        localStorage.setItem('taskList', JSON.stringify(allTasks));
     }
 });
