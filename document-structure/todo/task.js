@@ -4,7 +4,7 @@ const taskMessages = document.querySelector('.tasks__list');
 const taskTitle = document.querySelector('.task__title');
 
 const getTaskFromStorage = function() {
-   let allTasks = JSON.parse(localStorage.getItem('taskList'));
+   let allTasks = JSON.parse(localStorage.getItem('taskList')) || [];
    console.log(allTasks);
    for (i = 0; i < allTasks.length; i++) {
         let taskName = allTasks[i];
@@ -52,7 +52,7 @@ taskInput.addEventListener('click', (e) => {
         let allTasks = JSON.parse(localStorage.getItem('taskList'));
         console.log(allTasks);
         for (i = 0; i < allTasks.length; i++) {
-            if(allTasks[i] === (e.target.parentElement.textContent)){
+            if(allTasks[i] === (e.target.previousElementSibling.innerText)){
                 allTasks.splice(i, 1);
                 console.log(allTasks);
             }
